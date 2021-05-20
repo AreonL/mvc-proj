@@ -1,0 +1,12 @@
+parameters:
+    level: 5
+    paths:
+        - config
+        - app/http/controllers
+        #- test
+    bootstrapFiles:
+        - .phpstan.constants.php
+    ignoreErrors:
+        -
+            message: '#Access to an undefined property [a-zA-Z0-9\\_]+::\$+[a-zA-Z0-9\\_]#'
+            path: app/http/controllers/*
