@@ -82,4 +82,13 @@ class DiceHand
         }
         return $this->sum;
     }
+
+    public function getArrayDiceNumber(): array
+    {
+        $this->array = array();
+        for ($i = 0; $i < $this->numberDices; $i++) {
+            $this->array[] = $this->dices[$i]->getLastRoll();
+        }
+        return $this->array;
+    }
 }

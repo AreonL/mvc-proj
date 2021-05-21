@@ -20,6 +20,10 @@ a {
     color: orange;
 }
 
+button a {
+    color: black;
+}
+
 footer {
     border-top: 1px solid #ccc;
     text-align: center;
@@ -39,4 +43,55 @@ footer {
 .dices {
     font-size: 40px;
     margin-bottom: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "dice select"
+      "dice select"
+      "dice select"
+      "dice select"
+      "dice select"
+      "dice select"
+      "dice select"
+      "dice select"
+      "dice select"
+      "dice select"
+      "dice select";
+  }
+  
+.dice-grid { grid-area: dice; }
+  
+.select {
+    grid-area: select;
+}
+  
+.board {
+    background-color: white;
+    color: black;
+    width: 10em;
+    /* margin: auto; */
+    border: 1px solid black;
+    font-size: 24px;
+}
+
+.board th, .board td {
+    border: 1px solid black;
+}
+
+.board table {
+    border-spacing: 0;
+}
+
+.board td {
+    width: 100%;
+}
+
+.bold {
+    font-weight: bold;
+    border: 3px solid black;
 }

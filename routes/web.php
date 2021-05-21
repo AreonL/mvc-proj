@@ -56,3 +56,4 @@ Route::get('/highscore', [HighscoreController::class, 'index']);
 Route::post('/highscore/store', [HighscoreController::class, 'store']);
 
 // Kmom10 / Let's go
+Route::get('/highscore/{id}', [HighscoreController::class, 'show']);
