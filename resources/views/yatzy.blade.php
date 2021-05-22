@@ -167,7 +167,7 @@ $specialSumma = $session["specialSumma"] ?? null;
             <p>
                 <label>Tretal</label>
                 @if (is_null($three))
-                <input type="radio" name="selection[]" value='threeFourFive three'>
+                <input type="radio" name="selection[]" value='threeFourFive three 3'>
                 @else
                     = {{ $three }}
                 @endif
@@ -175,7 +175,7 @@ $specialSumma = $session["specialSumma"] ?? null;
             <p>
                 <label>Fyrtal</label>
                 @if (is_null($four))
-                <input type="radio" name="selection[]" value='threeFourFive four'>
+                <input type="radio" name="selection[]" value='threeFourFive four 4'>
                 @else
                     = {{ $four }}
                 @endif
@@ -215,7 +215,7 @@ $specialSumma = $session["specialSumma"] ?? null;
             <p>
                 <label>Yatzy</label>
                 @if (is_null($five))
-                <input type="radio" name="selection[]" value='threeFourFive five'>
+                <input type="radio" name="selection[]" value='threeFourFive five 5'>
                 @else
                     = {{ $five }}
                 @endif

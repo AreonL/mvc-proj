@@ -89,11 +89,8 @@ class Yatzy {
         session(['summa' => session('summa') ?? 0]);
         session(['specialSumma' => session('specialSumma') ?? 0]);
         session(['diceHand' => session('diceHand') ?? new DiceHand()]);
-
-        $select = session('selection')[0] ?? null;
-        $selection = explode(' ', $select)[0];
-        $antal = explode(' ', $select)[1] ?? null;
-        
+        $selectArray = session('selection')[0] ?? null;
+        $selection = explode(' ', $selectArray)[0] ?? null;
         
         if (strlen($selection) == 1) {
             $sumNumber = session('diceHand')->getSumNumber((int)$selection) ?? 0;
@@ -105,7 +102,7 @@ class Yatzy {
             session(['selection' => null]);
             return;
         } elseif (strlen($selection) > 1) {
-            $sumNumber = $this->specialSelection($selection, $antal);
+            $sumNumber = $this->specialSelection($selection);
             // session([($selection) => $sumNumber]);
             session(['rollCounter' => 0]);
             session(['check' => ["0", "1", "2", "3", "4"]]);
@@ -116,7 +113,7 @@ class Yatzy {
         }
     }
 
-    public function specialSelection($selection, $antal): int
+    public function specialSelection($selection): int
     {
         $sumNumber = session('diceHand')->getArrayDiceNumber() ?? 0;
         $sum = 0;
@@ -129,7 +126,7 @@ class Yatzy {
                 $sum = $this->twopair($sumNumber);
                 break;
             case 'threeFourFive':
-                $sum = $this->threeFourFive($sumNumber, $antal);
+                $sum = $this->threeFourFive($sumNumber);
                 break;
             case 'stair':
                 $sum = $this->stair($sumNumber);
@@ -174,44 +171,34 @@ class Yatzy {
         return 0;
     }
 
-    public function threeFourFive($sumNumber, $antal): int
+    public function threeFourFive($sumNumber): int
     {
         $sum = 0;
+        // dd(session('selection'));
         $selection = session('selection')[0] ?? null;
+        
+        $sessionWord = explode(' ', $selection)[1] ?? null;
+        $antal = explode(' ', $selection)[2] ?? null;
+
         $sumNumber = array_count_values($sumNumber);
         foreach ($sumNumber as $key => $value) {
-            if ($value >= 3) {
+            if ($value >= $antal) {
                 // Yatzy
-                if ($value === 5) {
-                    session(['five' => 50]);
+                if ($value === $antal) {
+                    session([$sessionWord => 50]);
                     return 50;
                 }
                 // Three and Four
                 for ($i = 0; $i < $value; $i++) { 
                     $sum += $key;
                 }
-                if ($value === 4) {
-                    session(['four' => $sum]);
-                    return $sum;
-                }
-                session(['three' => $sum]);
+                session([$sessionWord => $sum]);
                 return $sum;
             }
         }
         session([$antal => 0]);
         return 0;
     }
-
-    // public function stairLow($sumNumber): int
-    // {
-    //     sort($sumNumber);
-    //     $stairLow = array(1, 2, 3, 4, 5);
-    //     $result = array_intersect_assoc($sumNumber, $stairLow);
-    //     if (count($result) == 5) {
-    //         return 15;
-    //     }
-    //     return 0;
-    // }
 
     public function stair($sumNumber): int
     {
