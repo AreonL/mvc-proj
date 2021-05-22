@@ -87,7 +87,7 @@ class YatzyController extends Controller
     {
         session(["check" => $_POST["check"] ?? null]);
         session(["selection" => $_POST["selection"] ?? null]);
-
+        // dd(session('selection'));
         session('yatzy')->roll();
 
         return redirect('/yatzy');

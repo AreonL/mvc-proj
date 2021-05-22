@@ -90,7 +90,10 @@ class Yatzy {
         session(['specialSumma' => session('specialSumma') ?? 0]);
         session(['diceHand' => session('diceHand') ?? new DiceHand()]);
 
-        $selection = session('selection')[0] ?? null;
+        $select = session('selection')[0] ?? null;
+        $selection = explode(' ', $select)[0];
+        $antal = explode(' ', $select)[1] ?? null;
+        
         
         if (strlen($selection) == 1) {
             $sumNumber = session('diceHand')->getSumNumber((int)$selection) ?? 0;
@@ -102,8 +105,8 @@ class Yatzy {
             session(['selection' => null]);
             return;
         } elseif (strlen($selection) > 1) {
-            $sumNumber = $this->specialSelection($selection);
-            session([($selection) => $sumNumber]);
+            $sumNumber = $this->specialSelection($selection, $antal);
+            // session([($selection) => $sumNumber]);
             session(['rollCounter' => 0]);
             session(['check' => ["0", "1", "2", "3", "4"]]);
             session()->increment('specialSumma', $sumNumber);
@@ -113,7 +116,7 @@ class Yatzy {
         }
     }
 
-    public function specialSelection($selection): int
+    public function specialSelection($selection, $antal): int
     {
         $sumNumber = session('diceHand')->getArrayDiceNumber() ?? 0;
         $sum = 0;
@@ -125,17 +128,10 @@ class Yatzy {
             case 'twopair':
                 $sum = $this->twopair($sumNumber);
                 break;
-            case 'three':
-                $sum = $this->threeFourFive($sumNumber, 3);
+            case 'threeFourFive':
+                $sum = $this->threeFourFive($sumNumber, $antal);
                 break;
-            case 'four':
-                $sum = $this->threeFourFive($sumNumber, 4);
-                break;
-            case 'five':
-                $sum = $this->threeFourFive($sumNumber, 5);
-                break;
-            case 'stairLow':
-            case 'stairHigh':
+            case 'stair':
                 $sum = $this->stair($sumNumber);
                 break;
             case 'house':
@@ -181,20 +177,28 @@ class Yatzy {
     public function threeFourFive($sumNumber, $antal): int
     {
         $sum = 0;
+        $selection = session('selection')[0] ?? null;
         $sumNumber = array_count_values($sumNumber);
         foreach ($sumNumber as $key => $value) {
-            if ($value >= $antal) {
+            if ($value >= 3) {
                 // Yatzy
-                if ($antal == 5) {
+                if ($value === 5) {
+                    session(['five' => 50]);
                     return 50;
                 }
                 // Three and Four
-                for ($i = 0; $i < $antal; $i++) { 
+                for ($i = 0; $i < $value; $i++) { 
                     $sum += $key;
                 }
+                if ($value === 4) {
+                    session(['four' => $sum]);
+                    return $sum;
+                }
+                session(['three' => $sum]);
                 return $sum;
             }
         }
+        session([$antal => 0]);
         return 0;
     }
 
@@ -217,9 +221,11 @@ class Yatzy {
         $resultHigh = array_intersect_assoc($sumNumber, $stairHigh);
         $resultLow = array_intersect_assoc($sumNumber, $stairLow);
         if (count($resultLow) == 5) {
+            session(['stairLow' => 15]);
             return 15;
         }
         if (count($resultHigh) == 5) {
+            session(['stairLow' => 20]);
             return 20;
         }
         return 0;

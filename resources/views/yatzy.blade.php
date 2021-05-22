@@ -167,7 +167,7 @@ $specialSumma = $session["specialSumma"] ?? null;
             <p>
                 <label>Tretal</label>
                 @if (is_null($three))
-                <input type="radio" name="selection[]" value="three">
+                <input type="radio" name="selection[]" value='threeFourFive three'>
                 @else
                     = {{ $three }}
                 @endif
@@ -175,7 +175,7 @@ $specialSumma = $session["specialSumma"] ?? null;
             <p>
                 <label>Fyrtal</label>
                 @if (is_null($four))
-                <input type="radio" name="selection[]" value="four">
+                <input type="radio" name="selection[]" value='threeFourFive four'>
                 @else
                     = {{ $four }}
                 @endif
@@ -183,7 +183,7 @@ $specialSumma = $session["specialSumma"] ?? null;
             <p>
                 <label>Liten stege</label>
                 @if (is_null($stairLow))
-                <input type="radio" name="selection[]" value="stairLow">
+                <input type="radio" name="selection[]" value="stair">
                 @else
                     = {{ $stairLow }}
                 @endif
@@ -191,7 +191,7 @@ $specialSumma = $session["specialSumma"] ?? null;
             <p>
                 <label>Stor stege</label>
                 @if (is_null($stairHigh))
-                <input type="radio" name="selection[]" value="stairHigh">
+                <input type="radio" name="selection[]" value="stair">
                 @else
                     = {{ $stairHigh }}
                 @endif
@@ -215,7 +215,7 @@ $specialSumma = $session["specialSumma"] ?? null;
             <p>
                 <label>Yatzy</label>
                 @if (is_null($five))
-                <input type="radio" name="selection[]" value="five">
+                <input type="radio" name="selection[]" value='threeFourFive five'>
                 @else
                     = {{ $five }}
                 @endif
