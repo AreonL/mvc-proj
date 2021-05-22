@@ -116,8 +116,8 @@ class Yatzy {
     public function specialSelection($selection): int
     {
         $sumNumber = session('diceHand')->getArrayDiceNumber() ?? 0;
-        var_dump($sumNumber);
         $sum = 0;
+
         switch ($selection) {
             case 'pair':
                 $sum = $this->pair($sumNumber);
@@ -135,10 +135,8 @@ class Yatzy {
                 $sum = $this->threeFourFive($sumNumber, 5);
                 break;
             case 'stairLow':
-                $sum = $this->stairLow($sumNumber);
-                break;
             case 'stairHigh':
-                $sum = $this->stairHigh($sumNumber);
+                $sum = $this->stair($sumNumber);
                 break;
             case 'house':
                 $sum = $this->house($sumNumber);
@@ -200,23 +198,28 @@ class Yatzy {
         return 0;
     }
 
-    public function stairLow($sumNumber): int
+    // public function stairLow($sumNumber): int
+    // {
+    //     sort($sumNumber);
+    //     $stairLow = array(1, 2, 3, 4, 5);
+    //     $result = array_intersect_assoc($sumNumber, $stairLow);
+    //     if (count($result) == 5) {
+    //         return 15;
+    //     }
+    //     return 0;
+    // }
+
+    public function stair($sumNumber): int
     {
         sort($sumNumber);
-        $stairArray = array(1, 2, 3, 4, 5);
-        $result = array_intersect_assoc($sumNumber, $stairArray);
-        if (count($result) == 5) {
+        $stairLow = array(1, 2, 3, 4, 5);
+        $stairHigh = array(2, 3, 4, 5, 6);
+        $resultHigh = array_intersect_assoc($sumNumber, $stairHigh);
+        $resultLow = array_intersect_assoc($sumNumber, $stairLow);
+        if (count($resultLow) == 5) {
             return 15;
         }
-        return 0;
-    }
-
-    public function stairHigh($sumNumber): int
-    {
-        sort($sumNumber);
-        $stairArray = array(2, 3, 4, 5, 6);
-        $result = array_intersect_assoc($sumNumber, $stairArray);
-        if (count($result) == 5) {
+        if (count($resultHigh) == 5) {
             return 20;
         }
         return 0;
