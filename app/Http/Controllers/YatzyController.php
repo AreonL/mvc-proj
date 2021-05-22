@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
 class YatzyController extends Controller
 {
     /**
+     * Declare some variables
+     */
+    private string $action;
+    
+    /**
      * Index function
      * 
      * Check what action each view should have
