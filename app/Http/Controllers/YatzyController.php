@@ -13,10 +13,7 @@ use Illuminate\Http\Request;
 
 class YatzyController extends Controller
 {
-    /**
-     * Declare some variables
-     */
-    private string $action;
+    public string $action;
     
     /**
      * Index function

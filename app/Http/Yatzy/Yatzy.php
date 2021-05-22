@@ -235,7 +235,7 @@ class Yatzy {
                 $lowNumber = true;
             }
         }
-        if ($highNumber == true && $lowNumber == true) {
+        if ($highNumber === true && $lowNumber === true) {
             foreach ($sumNumber as $key) {
                 $sum += $key;
             }
