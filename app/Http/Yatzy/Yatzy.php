@@ -165,7 +165,7 @@ class Yatzy {
                 $numberTwo = $value;
             }
         }
-        if ($numberOne != 0 && $numberTwo != 0) {
+        if ($numberTwo != 0) {
             return ($numberOne + $numberOne) + ($numberTwo + $numberTwo);
         }
         return 0;
