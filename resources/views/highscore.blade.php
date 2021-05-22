@@ -1,7 +1,7 @@
 <?php
 
 $header = $header ?? null;
-
+$action = url("/highscore");
 
 ?>
 
@@ -20,7 +20,7 @@ $header = $header ?? null;
 @foreach ($highscore as $hs)
     {{-- [0] == name, [1] == score, [2] == id --}}
     <li>
-        {{ $hs[0] }}: {{ $hs[1] }} <button><a href="highscore/{{ $hs[2] }}">Show Board</a></button>
+        {{ $hs[0] }}: {{ $hs[1] }} <button><a class="button" href={{ url("/highscore/" . $hs[2]) }}>Show Board</a></button>
     </li>
 @endforeach
 </ol>

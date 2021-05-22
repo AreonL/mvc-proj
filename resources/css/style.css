@@ -20,7 +20,7 @@ a {
     color: orange;
 }
 
-button a {
+a.button {
     color: black;
 }
 
@@ -70,3 +70,28 @@ footer {
     grid-area: select;
 }
   
+.board {
+    background-color: white;
+    color: black;
+    width: 10em;
+    /* margin: auto; */
+    border: 1px solid black;
+    font-size: 24px;
+}
+
+.board th, .board td {
+    border: 1px solid black;
+}
+
+.board table {
+    border-spacing: 0;
+}
+
+.board td {
+    width: 100%;
+}
+
+.bold {
+    font-weight: bold;
+    border: 3px solid black;
+}

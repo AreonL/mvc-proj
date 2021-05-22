@@ -38,36 +38,31 @@ $bonus = $session["bonus"] ?? 0;
 @if($end)
     <p>The end</p>
     <p>Total sum: {{ $bonus + $summa + $specialSumma }}</p>
-    <form method="post" action="highscore/store">
+    <form method="post" action="{{ url("/highscore/store") }}">
         @csrf
-        <p>
-            <label for="name">Namn:</label>
-        </p>
-        <p>
-            <input type="text" name="name">
-            <div>{{ $errors->first('name') }}</div>
-        </p>
-        <p>
-            <input type="hidden" name="select1" value={{ $select1 }}>
-            <input type="hidden" name="select2" value={{ $select2 }}>
-            <input type="hidden" name="select3" value={{ $select3 }}>
-            <input type="hidden" name="select4" value={{ $select4 }}>
-            <input type="hidden" name="select5" value={{ $select5 }}>
-            <input type="hidden" name="select6" value={{ $select6 }}>
-            <input type="hidden" name="pair" value={{ $pair }}>
-            <input type="hidden" name="twopair" value={{ $twopair }}>
-            <input type="hidden" name="three" value={{ $three }}>
-            <input type="hidden" name="four" value={{ $four }}>
-            <input type="hidden" name="five" value={{ $five }}>
-            <input type="hidden" name="stairLow" value={{ $stairLow }}>
-            <input type="hidden" name="stairHigh" value={{ $stairHigh }}>
-            <input type="hidden" name="house" value={{ $house }}>
-            <input type="hidden" name="chance" value={{ $chance }}>
-            <input type="hidden" name="summa" value={{ $summa }}>
-            <input type="hidden" name="bonus" value={{ $bonus }}>
-            <input type="hidden" name="total" value={{ $bonus + $summa + $specialSumma}}>
-            <input type="submit" value="Submit score!">
-        </p>        
+        <label for="name">Namn:</label>
+        <input type="text" name="name">
+        <div>{{ $errors->first('name') }}</div>
+
+        <input type="hidden" name="select1" value={{ $select1 }}>
+        <input type="hidden" name="select2" value={{ $select2 }}>
+        <input type="hidden" name="select3" value={{ $select3 }}>
+        <input type="hidden" name="select4" value={{ $select4 }}>
+        <input type="hidden" name="select5" value={{ $select5 }}>
+        <input type="hidden" name="select6" value={{ $select6 }}>
+        <input type="hidden" name="pair" value={{ $pair }}>
+        <input type="hidden" name="twopair" value={{ $twopair }}>
+        <input type="hidden" name="three" value={{ $three }}>
+        <input type="hidden" name="four" value={{ $four }}>
+        <input type="hidden" name="five" value={{ $five }}>
+        <input type="hidden" name="stairLow" value={{ $stairLow }}>
+        <input type="hidden" name="stairHigh" value={{ $stairHigh }}>
+        <input type="hidden" name="house" value={{ $house }}>
+        <input type="hidden" name="chance" value={{ $chance }}>
+        <input type="hidden" name="summa" value={{ $summa }}>
+        <input type="hidden" name="bonus" value={{ $bonus }}>
+        <input type="hidden" name="total" value={{ $bonus + $summa + $specialSumma}}>
+        <input type="submit" value="Submit score!">
     </form>
 @elseif($yatzy)
     <p>{{ $message }}</p>

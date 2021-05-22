@@ -8,6 +8,7 @@ use App\Http\Dice\{
     DiceHand,
     DiceGraphic
 };
+use App\Http\Yatzy\Yatzy;
 use Illuminate\Http\Request;
 
 class YatzyController extends Controller
@@ -107,7 +108,8 @@ class YatzyController extends Controller
         // $this->specialSelection();
 
         // Check if bonus
-        $this->bonus();
+        $yatzy = new Yatzy();
+        $yatzy->bonus();
 
         // Checkbox array to see what needs to be rolled
         $trueRoll = $this->trueRoll();
@@ -307,13 +309,13 @@ class YatzyController extends Controller
         return $sum;
     }
 
-    public function bonus(): void
-    {
-        $summa = session('summa');
-        if ($summa >= 63) {
-            session(['bonus' => 50]);
-        }
-    }
+    // public function bonus(): void
+    // {
+    //     $summa = session('summa');
+    //     if ($summa >= 63) {
+    //         session(['bonus' => 50]);
+    //     }
+    // }
 
     public function checkAllBoxes(): bool
     {

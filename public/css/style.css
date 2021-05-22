@@ -20,7 +20,7 @@ a {
     color: orange;
 }
 
-button a {
+a.button {
     color: black;
 }
 

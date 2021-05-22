@@ -28,10 +28,6 @@ $win = session("checkWin") ?? null;
 
 <h1>{{ $header }}</h1>
 
-{{-- @foreach ($alldata as $data)
-<p>{{$data}}</p>
-@endforeach --}}
-
 @if ($win or $cLose)
     <!-- Winning -->
     <h2>You won!</h2>
@@ -96,7 +92,7 @@ $win = session("checkWin") ?? null;
 @elseif ($end !== "end")
     <!-- Playgame -->
     <p>Tärningar: {{ $dices }}</p>
-    <p>{{ $dh }}</p>
+    <p class="dices">{{ $dh }}</p>
     <p>Player summa: {{ session('sum') }}</p>
     <form method="post" action="{{ $action }}">
         @csrf
