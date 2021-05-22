@@ -39,8 +39,12 @@ Route::get('/hello', [HelloWorldController::class, 'hello']);
 Route::get('/hello/{message}', [HelloWorldController::class, 'hello']);
 
 // Kmom04 / Import routes for yatzy and game21
+// Kmom10 / New routes
 Route::get('/yatzy', [YatzyController::class, 'index']);
-Route::post('/yatzy/game', [YatzyController::class, 'game']);
+Route::get('/yatzy/setup', [YatzyController::class, 'setup']);
+Route::post('/yatzy/firstRoll', [YatzyController::class, 'firstRoll']);
+Route::post('/yatzy/roll', [YatzyController::class, 'roll']);
+// Route::post('/yatzy/selection', [YatzyController::class, 'selection']);
 
 Route::get('/session', [SessionController::class, 'session']);
 Route::post('/session/destroy', [SessionController::class, 'destroy']);

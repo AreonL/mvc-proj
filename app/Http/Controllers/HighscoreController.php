@@ -36,36 +36,36 @@ class HighscoreController extends Controller
         ]);
 
         $highscore = new Highscore();
-        $highscore->name = request('name');
+        $highscore->name  = request('name');
         $highscore->score = request('total');
         $highscore->save();
 
 
         $board = new Board();
-        $board->name = request('name');
-        $board->select1 = request('select1');
-        $board->select2 = request('select2');
-        $board->select3 = request('select3');
-        $board->select4 = request('select4');
-        $board->select5 = request('select5');
-        $board->select6 = request('select6');
-        $board->pair = request('pair');
-        $board->twopair = request('twopair');
-        $board->three = request('three');
-        $board->four = request('four');
-        $board->five = request('five');
-        $board->stairLow = request('stairLow');
-        $board->stairHigh = request('stairHigh');
-        $board->house = request('house');
-        $board->chance = request('chance');
-        $board->summa = request('summa');
-        $board->bonus = request('bonus');
-        $board->total = request('total');
+        $board->name        = request('name');
+        $board->select1     = request('select1');
+        $board->select2     = request('select2');
+        $board->select3     = request('select3');
+        $board->select4     = request('select4');
+        $board->select5     = request('select5');
+        $board->select6     = request('select6');
+        $board->pair        = request('pair');
+        $board->twopair     = request('twopair');
+        $board->three       = request('three');
+        $board->four        = request('four');
+        $board->five        = request('five');
+        $board->stairLow    = request('stairLow');
+        $board->stairHigh   = request('stairHigh');
+        $board->house       = request('house');
+        $board->chance      = request('chance');
+        $board->summa       = request('summa');
+        $board->bonus       = request('bonus');
+        $board->total       = request('total');
         $board->save();
 
         session()->flush();
 
-        return redirect("/yatzy");
+        return redirect("/yatzy/setup");
     }
 
     public function show($id)

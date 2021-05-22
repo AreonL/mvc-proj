@@ -1,30 +1,39 @@
 <?php
-
+// Title and message for firstView
 $header = "Yatzy";
 $message = "A game of Yatzy";
-$end = $session["end"] ?? null;
-$action = $action ?? url("/yatzy/game");
-$yatzy = $yatzy ?? null;
-$dh = $dh ?? null;
-$roll = $roll ?? null;
-$select1 = $session["select1"] ?? null;
-$select2 = $session["select2"] ?? null;
-$select3 = $session["select3"] ?? null;
-$select4 = $session["select4"] ?? null;
-$select5 = $session["select5"] ?? null;
-$select6 = $session["select6"] ?? null;
-$pair = $session["pair"] ?? null;
-$twopair = $session["twopair"] ?? null;
-$three = $session["three"] ?? null;
-$four = $session["four"] ?? null;
-$five = $session["five"] ?? null;
-$stairLow = $session["stairLow"] ?? null;
-$stairHigh = $session["stairHigh"] ?? null;
-$house = $session["house"] ?? null;
-$chance = $session["chance"] ?? null;
+
+// Diffrent views depending on situation in game
+$firstView  = $session['firstView'] ?? null;
+$end        = $session["end"] ?? null;
+$dh         = $session['dh'] ?? null;
+$roll       = $session['roll'] ?? null;
+
+// Route/url specifyer for action in forms, with default url
+$action     = $action ?? url("/yatzy");
+
+// Diffrent options in game
+$select1    = $session["select1"] ?? null;
+$select2    = $session["select2"] ?? null;
+$select3    = $session["select3"] ?? null;
+$select4    = $session["select4"] ?? null;
+$select5    = $session["select5"] ?? null;
+$select6    = $session["select6"] ?? null;
+$pair       = $session["pair"] ?? null;
+$twopair    = $session["twopair"] ?? null;
+$three      = $session["three"] ?? null;
+$four       = $session["four"] ?? null;
+$stairLow   = $session["stairLow"] ?? null;
+$stairHigh  = $session["stairHigh"] ?? null;
+$house      = $session["house"] ?? null;
+$chance     = $session["chance"] ?? null;
+$five       = $session["five"] ?? null; // Yatzy
+
+// Scores, summa = first 6 options, bonus = +50 if you have 63 points
+// specialSumma is rest options below top 6 options
+$summa        = $session["summa"] ?? 0;
+$bonus        = $session["bonus"] ?? 0;
 $specialSumma = $session["specialSumma"] ?? null;
-$summa = $session["summa"] ?? 0;
-$bonus = $session["bonus"] ?? 0;
 
 ?>
 
@@ -38,7 +47,7 @@ $bonus = $session["bonus"] ?? 0;
 @if($end)
     <p>The end</p>
     <p>Total sum: {{ $bonus + $summa + $specialSumma }}</p>
-    <form method="post" action="{{ url("/highscore/store") }}">
+    <form method="post" action="{{ $action }}">
         @csrf
         <label for="name">Namn:</label>
         <input type="text" name="name">
@@ -63,15 +72,6 @@ $bonus = $session["bonus"] ?? 0;
         <input type="hidden" name="bonus" value={{ $bonus }}>
         <input type="hidden" name="total" value={{ $bonus + $summa + $specialSumma}}>
         <input type="submit" value="Submit score!">
-    </form>
-@elseif($yatzy)
-    <p>{{ $message }}</p>
-    <form method="post" action="{{ $action }}">
-        @csrf
-        <p>
-            <input type="hidden" name="firstRoll" value="firstRoll">
-            <input type="submit" value="Play">
-        </p>
     </form>
 <!-- If pressed play -->
 @elseif ($roll)
@@ -226,6 +226,16 @@ $bonus = $session["bonus"] ?? 0;
     </form>
     </div>
 
+{{-- Play game button --}}
+@elseif($firstView)
+    <p>{{ $message }}</p>
+    <form method="post" action="{{ $action }}">
+        @csrf
+        <p>
+            <input type="hidden" name="firstRoll" value="firstRoll">
+            <input type="submit" value="Play">
+        </p>
+    </form>
 @endif
 
 {{-- end of page --}}
