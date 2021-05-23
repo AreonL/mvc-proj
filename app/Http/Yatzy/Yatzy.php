@@ -103,7 +103,10 @@ class Yatzy {
             session(['selection' => null]);
             return;
         } elseif (strlen($selection) > 1) {
+            $arrayNumber = session('diceHand')->getArrayDiceNumber() ?? 0;
             $sumNumber = $this->specialSelection($selection);
+
+
             session([$selection => $sumNumber]);
             session(['rollCounter' => 0]);
             session(['check' => ["0", "1", "2", "3", "4"]]);
@@ -119,26 +122,42 @@ class Yatzy {
         $sumNumber = session('diceHand')->getArrayDiceNumber() ?? 0;
         $sum = 0;
 
-        switch ($selection) {
-            case 'pair':
-                $sum = $this->pair($sumNumber);
-                break;
-            case 'twopair':
-                $sum = $this->twopair($sumNumber);
-                break;
-            case 'threeFourFive':
-                $this->threeFourFive($sumNumber);
-                break;
-            case 'stair':
-                $this->stair($sumNumber);
-                break;
-            case 'house':
-                $sum = $this->house($sumNumber);
-                break;
-            case 'chance':
-                $sum = $this->chans($sumNumber);
-                break;
+        if ($selection === 'pair') {
+            $sum = $this->pair($sumNumber);
+            return $sum;
+        } elseif ($selection === 'twopair') {
+            $sum = $this->pair($sumNumber);
+            return $sum;
+        } elseif ($selection === 'threeFourFive') {
+            $sum = $this->pair($sumNumber);
+            return $sum;
+        } elseif ($selection === 'stair') {
+            $sum = $this->pair($sumNumber);
+            return $sum;
+        } elseif ($selection === 'house') {
+            $sum = $this->pair($sumNumber);
+            return $sum;
         }
+        $sum = $this->pair($sumNumber);
+        //     case 'pair':
+        //         $sum = $this->pair($sumNumber);
+        //         break;
+        //     case 'twopair':
+        //         $sum = $this->twopair($sumNumber);
+        //         break;
+        //     case 'threeFourFive':
+        //         $this->threeFourFive($sumNumber);
+        //         break;
+        //     case 'stair':
+        //         $this->stair($sumNumber);
+        //         break;
+        //     case 'house':
+        //         $sum = $this->house($sumNumber);
+        //         break;
+        //     case 'chance':
+        //         $sum = $this->chans($sumNumber);
+        //         break;
+        // }
         return $sum;
     }
 
