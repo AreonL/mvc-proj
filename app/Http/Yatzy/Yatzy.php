@@ -104,8 +104,12 @@ class Yatzy {
             return;
         } elseif (strlen($selection) > 1) {
             $arrayNumber = session('diceHand')->getArrayDiceNumber() ?? 0;
-            $sumNumber = $this->specialSelection($selection);
+            $sumNumber = $this->middleSelection($selection, $arrayNumber);
+            $specNumber = $this->specialSelection($selection, $arrayNumber);
 
+            if ($specNumber >= $sumNumber) {
+                $sumNumber = $specNumber;
+            }
 
             session([$selection => $sumNumber]);
             session(['rollCounter' => 0]);
@@ -117,47 +121,39 @@ class Yatzy {
         }
     }
 
-    public function specialSelection($selection): int
+    public function middleSelection($selection, $arrayNumber): int
     {
-        $sumNumber = session('diceHand')->getArrayDiceNumber() ?? 0;
         $sum = 0;
 
-        if ($selection === 'pair') {
-            $sum = $this->pair($sumNumber);
-            return $sum;
-        } elseif ($selection === 'twopair') {
-            $sum = $this->pair($sumNumber);
-            return $sum;
-        } elseif ($selection === 'threeFourFive') {
-            $sum = $this->pair($sumNumber);
-            return $sum;
-        } elseif ($selection === 'stair') {
-            $sum = $this->pair($sumNumber);
-            return $sum;
-        } elseif ($selection === 'house') {
-            $sum = $this->pair($sumNumber);
-            return $sum;
+        switch ($selection) {
+            case 'pair':
+                $sum = $this->pair($arrayNumber);
+                break;
+            case 'twopair':
+                $sum = $this->twopair($arrayNumber);
+                break;
+            case 'threeFourFive':
+                $this->threeFourFive($arrayNumber);
+                break;
         }
-        $sum = $this->pair($sumNumber);
-        //     case 'pair':
-        //         $sum = $this->pair($sumNumber);
-        //         break;
-        //     case 'twopair':
-        //         $sum = $this->twopair($sumNumber);
-        //         break;
-        //     case 'threeFourFive':
-        //         $this->threeFourFive($sumNumber);
-        //         break;
-        //     case 'stair':
-        //         $this->stair($sumNumber);
-        //         break;
-        //     case 'house':
-        //         $sum = $this->house($sumNumber);
-        //         break;
-        //     case 'chance':
-        //         $sum = $this->chans($sumNumber);
-        //         break;
-        // }
+        return $sum;
+    }
+
+    public function specialSelection($selection, $arrayNumber): int
+    {
+        $sum = 0;
+
+        switch ($selection) {
+            case 'stair':
+                $this->stair($arrayNumber);
+                break;
+            case 'house':
+                $sum = $this->house($arrayNumber);
+                break;
+            case 'chance':
+                $sum = $this->chans($arrayNumber);
+                break;
+        }
         return $sum;
     }
 
@@ -205,6 +201,7 @@ class Yatzy {
                 // Yatzy
                 if ($antal == 5) {
                     session(['five' => 50]);
+                    session()->increment('specialSumma', 50);
                     return 50;
                 }
                 // Three and Four
@@ -212,6 +209,7 @@ class Yatzy {
                     $sum += $key;
                 }
                 session([$sessionWord => $sum]);
+                session()->increment('specialSumma', $sum);
                 return $sum;
             }
         }
@@ -229,12 +227,17 @@ class Yatzy {
         $stairHigh = array(2, 3, 4, 5, 6);
         $resultHigh = array_intersect_assoc($sumNumber, $stairHigh);
         $resultLow = array_intersect_assoc($sumNumber, $stairLow);
+
         if (count($resultLow) == 5) {
             session(['stairLow' => 15]);
+            session()->increment('specialSumma', 15);
+
             return 15;
         }
         if (count($resultHigh) == 5) {
             session(['stairLow' => 20]);
+            session()->increment('specialSumma', 20);
+
             return 20;
         }
         session([$sessionWord => 0]);
