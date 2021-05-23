@@ -171,20 +171,26 @@ class Yatzy {
 
     public function twopair($sumNumber): int
     {
-        $numberOne = 0;
-        $numberTwo = 0;
+        $number = array(0, 0);
+        // $numberTwo = 0;
         foreach ($sumNumber as $key => $value) {
             unset($sumNumber[$key]);
-            if (in_array($value, $sumNumber) && $numberOne == 0) {
-                $numberOne = $value;
-            } elseif (in_array($value, $sumNumber) && $value != $numberOne) {
-                $numberTwo = $value;
-            }
+            $number = $this->oneTwo($sumNumber, $value, $number);
         }
-        if ($numberTwo != 0) {
-            return ($numberOne + $numberOne) + ($numberTwo + $numberTwo);
+        if ($number[1] != 0) {
+            return ($number[0] + $number[0]) + ($number[1] + $number[1]);
         }
         return 0;
+    }
+
+    public function oneTwo($sumNumber, $value, $number)
+    {
+        if (in_array($value, $sumNumber) && $number[0] == 0) {
+            $number[0] = $value;
+        } elseif (in_array($value, $sumNumber) && $value != $number[0]) {
+            $number[1] = $value;
+        }
+        return $number;
     }
 
     public function threeFourFive($sumNumber): int
