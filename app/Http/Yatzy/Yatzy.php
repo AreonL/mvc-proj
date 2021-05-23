@@ -171,11 +171,12 @@ class Yatzy {
 
     public function twopair($sumNumber): int
     {
+        // $number[0] = One number, $number[1] = Second number
         $number = array(0, 0);
-        // $numberTwo = 0;
+        
         foreach ($sumNumber as $key => $value) {
             unset($sumNumber[$key]);
-            $number = $this->oneTwo($sumNumber, $value, $number);
+            $number = $this->twopairCheck($sumNumber, $value, $number);
         }
         if ($number[1] != 0) {
             return ($number[0] + $number[0]) + ($number[1] + $number[1]);
@@ -183,7 +184,7 @@ class Yatzy {
         return 0;
     }
 
-    public function oneTwo($sumNumber, $value, $number)
+    public function twopairCheck($sumNumber, $value, $number)
     {
         if (in_array($value, $sumNumber) && $number[0] == 0) {
             $number[0] = $value;
@@ -253,23 +254,30 @@ class Yatzy {
     public function house($sumNumber): int
     {
         $sum = 0;
-        $highNumber = false;
-        $lowNumber = false;
         $newArray = array_count_values($sumNumber);
-        foreach ($newArray as $key => $value) {
-            if ($value == 3) {
-                $highNumber = true;
-            } elseif ($value == 2) {
-                $lowNumber = true;
-            }
-        }
-        if ($highNumber === true && $lowNumber === true) {
+
+        $numberArray = $this->houseCheck($newArray);
+
+        if ($numberArray[0] === true && $numberArray[1] === true) {
             foreach ($sumNumber as $key) {
                 $sum += $key;
             }
             return $sum;
         }
         return 0;
+    }
+
+    public function houseCheck($newArray): array
+    {
+        $numberArray = array(false, false);
+        foreach ($newArray as $key => $value) {
+            if ($value == 3) {
+                $numberArray[0] = true;
+            } elseif ($value == 2) {
+                $numberArray[1] = true;
+            }
+        }
+        return $numberArray;
     }
 
     public function chans($sumNumber): int
