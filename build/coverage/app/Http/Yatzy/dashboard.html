@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Dashboard for C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\app\Http\Controllers</title>
+  <title>Dashboard for C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\app\Http\Yatzy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../_css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="../../../_css/nv.d3.min.css" rel="stylesheet" type="text/css">
@@ -19,7 +19,7 @@
          <li class="breadcrumb-item"><a href="../../../index.html">C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj</a></li>
          <li class="breadcrumb-item"><a href="../../index.html">app</a></li>
          <li class="breadcrumb-item"><a href="../index.html">Http</a></li>
-         <li class="breadcrumb-item"><a href="index.html">Controllers</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Yatzy</a></li>
          <li class="breadcrumb-item active">(Dashboard)</li>
 
        </ol>
@@ -157,7 +157,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#classCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,1,6], "Class Coverage"))
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,0,2], "Class Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -175,7 +175,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#methodCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,1,0,18], "Method Coverage"))
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,0,16], "Method Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -225,7 +225,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Cyclomatic Complexity');
 
     d3.select('#classComplexity svg')
-      .datum(getComplexityData([[100,2,"<a href=\"BookController.php.html#7\">App\\Http\\Controllers\\BookController<\/a>"],[100,0,"<a href=\"Controller.php.html#10\">App\\Http\\Controllers\\Controller<\/a>"],[100,30,"<a href=\"GameController.php.html#13\">App\\Http\\Controllers\\GameController<\/a>"],[100,1,"<a href=\"HelloWorldController.php.html#7\">App\\Http\\Controllers\\HelloWorldController<\/a>"],[100,4,"<a href=\"HighscoreController.php.html#8\">App\\Http\\Controllers\\HighscoreController<\/a>"],[100,2,"<a href=\"SessionController.php.html#7\">App\\Http\\Controllers\\SessionController<\/a>"],[97.5609756097561,7,"<a href=\"YatzyController.php.html#14\">App\\Http\\Controllers\\YatzyController<\/a>"]], 'Class Complexity'))
+      .datum(getComplexityData([[100,38,"<a href=\"Special.php.html#16\">App\\Http\\Yatzy\\Special<\/a>"],[100,18,"<a href=\"Yatzy.php.html#15\">App\\Http\\Yatzy\\Yatzy<\/a>"]], 'Class Complexity'))
       .transition()
       .duration(500)
       .call(chart);
@@ -249,7 +249,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Method Complexity');
 
     d3.select('#methodComplexity svg')
-      .datum(getComplexityData([[100,1,"<a href=\"BookController.php.html#9\">App\\Http\\Controllers\\BookController::index<\/a>"],[100,1,"<a href=\"BookController.php.html#19\">App\\Http\\Controllers\\BookController::store<\/a>"],[100,6,"<a href=\"GameController.php.html#15\">App\\Http\\Controllers\\GameController::index<\/a>"],[100,6,"<a href=\"GameController.php.html#48\">App\\Http\\Controllers\\GameController::roll<\/a>"],[100,1,"<a href=\"GameController.php.html#65\">App\\Http\\Controllers\\GameController::setUp<\/a>"],[100,4,"<a href=\"GameController.php.html#75\">App\\Http\\Controllers\\GameController::playGame<\/a>"],[100,3,"<a href=\"GameController.php.html#95\">App\\Http\\Controllers\\GameController::checkScore<\/a>"],[100,9,"<a href=\"GameController.php.html#109\">App\\Http\\Controllers\\GameController::end<\/a>"],[100,1,"<a href=\"GameController.php.html#146\">App\\Http\\Controllers\\GameController::redo<\/a>"],[100,1,"<a href=\"HelloWorldController.php.html#15\">App\\Http\\Controllers\\HelloWorldController::hello<\/a>"],[100,2,"<a href=\"HighscoreController.php.html#10\">App\\Http\\Controllers\\HighscoreController::index<\/a>"],[100,1,"<a href=\"HighscoreController.php.html#32\">App\\Http\\Controllers\\HighscoreController::store<\/a>"],[100,1,"<a href=\"HighscoreController.php.html#71\">App\\Http\\Controllers\\HighscoreController::show<\/a>"],[100,1,"<a href=\"SessionController.php.html#9\">App\\Http\\Controllers\\SessionController::session<\/a>"],[100,1,"<a href=\"SessionController.php.html#16\">App\\Http\\Controllers\\SessionController::destroy<\/a>"],[88.88888888888889,4,"<a href=\"YatzyController.php.html#24\">App\\Http\\Controllers\\YatzyController::index<\/a>"],[100,1,"<a href=\"YatzyController.php.html#45\">App\\Http\\Controllers\\YatzyController::setup<\/a>"],[100,1,"<a href=\"YatzyController.php.html#76\">App\\Http\\Controllers\\YatzyController::firstRoll<\/a>"],[100,1,"<a href=\"YatzyController.php.html#91\">App\\Http\\Controllers\\YatzyController::roll<\/a>"]], 'Method Complexity'))
+      .datum(getComplexityData([[100,4,"<a href=\"Special.php.html#23\">App\\Http\\Yatzy\\Special::middleSelection<\/a>"],[100,4,"<a href=\"Special.php.html#47\">App\\Http\\Yatzy\\Special::specialSelection<\/a>"],[100,4,"<a href=\"Special.php.html#65\">App\\Http\\Yatzy\\Special::pair<\/a>"],[100,3,"<a href=\"Special.php.html#77\">App\\Http\\Yatzy\\Special::twopair<\/a>"],[100,5,"<a href=\"Special.php.html#92\">App\\Http\\Yatzy\\Special::twopairCheck<\/a>"],[100,5,"<a href=\"Special.php.html#102\">App\\Http\\Yatzy\\Special::threeFourFive<\/a>"],[100,3,"<a href=\"Special.php.html#133\">App\\Http\\Yatzy\\Special::stair<\/a>"],[100,4,"<a href=\"Special.php.html#160\">App\\Http\\Yatzy\\Special::house<\/a>"],[100,4,"<a href=\"Special.php.html#176\">App\\Http\\Yatzy\\Special::houseCheck<\/a>"],[100,2,"<a href=\"Special.php.html#189\">App\\Http\\Yatzy\\Special::chans<\/a>"],[100,3,"<a href=\"Yatzy.php.html#19\">App\\Http\\Yatzy\\Yatzy::firstRoll<\/a>"],[100,2,"<a href=\"Yatzy.php.html#48\">App\\Http\\Yatzy\\Yatzy::roll<\/a>"],[100,3,"<a href=\"Yatzy.php.html#79\">App\\Http\\Yatzy\\Yatzy::trueRoll<\/a>"],[100,4,"<a href=\"Yatzy.php.html#101\">App\\Http\\Yatzy\\Yatzy::selection<\/a>"],[100,2,"<a href=\"Yatzy.php.html#147\">App\\Http\\Yatzy\\Yatzy::bonus<\/a>"],[100,4,"<a href=\"Yatzy.php.html#159\">App\\Http\\Yatzy\\Yatzy::checkAllBoxes<\/a>"]], 'Method Complexity'))
       .transition()
       .duration(500)
       .call(chart);

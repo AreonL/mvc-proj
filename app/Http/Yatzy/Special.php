@@ -104,9 +104,9 @@ class Special {
         $sum = 0;
         $selection = session('selection')[0] ?? null;
         
+        // dd($selection);
         $sessionWord = explode(' ', $selection)[1] ?? null;
         $antal = explode(' ', $selection)[2] ?? null;
-
         $sumNumber = array_count_values($sumNumber);
         foreach ($sumNumber as $key => $value) {
             if ($value >= $antal) {
@@ -119,6 +119,7 @@ class Special {
                 // Three and Four
                 for ($i = 0; $i < $value; $i++) { 
                     $sum += $key;
+                    // echo $sum;
                 }
                 session([$sessionWord => $sum]);
                 session()->increment('specialSumma', $sum);
@@ -137,8 +138,8 @@ class Special {
         sort($sumNumber);
         $stairLow = array(1, 2, 3, 4, 5);
         $stairHigh = array(2, 3, 4, 5, 6);
-        $resultHigh = array_intersect_assoc($sumNumber, $stairHigh);
         $resultLow = array_intersect_assoc($sumNumber, $stairLow);
+        $resultHigh = array_intersect_assoc($sumNumber, $stairHigh);
 
         if (count($resultLow) == 5) {
             session(['stairLow' => 15]);
@@ -147,7 +148,7 @@ class Special {
             return 15;
         }
         if (count($resultHigh) == 5) {
-            session(['stairLow' => 20]);
+            session(['stairHigh' => 20]);
             session()->increment('specialSumma', 20);
 
             return 20;

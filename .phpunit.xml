@@ -4,6 +4,7 @@
     <include>
         <directory suffix=".php">config</directory>
         <directory suffix=".php">app/http/Controllers</directory>
+        <directory suffix=".php">app/http/Yatzy</directory>
         <!-- <directory suffix=".php">app/http/Dice</directory> -->
     </include>
     <report>

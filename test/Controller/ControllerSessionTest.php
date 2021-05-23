@@ -11,6 +11,7 @@ use AreonL\Dice\{
 };
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Http\Request;
 
@@ -40,22 +41,22 @@ class ControllerSessionTest extends TestCase
         $response->assertStatus(200);
     }
 
-    // /**
-    //  * Destroy the session.
-    //  * @runInSeparateProcess
-    //  */
-    // public function testDestroySession()
-    // {
-    //     session_start();
-    //     $controller = new Session();
+    /**
+     * Check that the controller "destroys" session with flush.
+     */
+    public function testDestroySession()
+    {
+        $controller = new SessionController();
+        $this->assertInstanceOf("App\Http\Controllers\SessionController", $controller);
 
-    //     $_SESSION = [
-    //         "key" => "value"
-    //     ];
+        session(['key' => 'value']);
 
-    //     $exp = "\Psr\Http\Message\ResponseInterface";
-    //     $res = $controller->destroy();
-    //     $this->assertInstanceOf($exp, $res);
-    //     $this->assertEmpty($_SESSION);
-    // }
+        $session = session()->all();
+        $this->assertNotEmpty($session);
+        
+        $controller->destroy();
+
+        $session = session()->all();
+        $this->assertEmpty($session);
+    }
 }

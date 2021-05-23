@@ -7,7 +7,7 @@ $message = "A game of Yatzy";
 $firstView  = $session['firstView'] ?? null;
 $end        = $session["end"] ?? null;
 $dh         = $session['dh'] ?? null;
-$roll       = $session['roll'] ?? null;
+$roll       = $session['rolling'] ?? null;
 
 // Route/url specifyer for action in forms, with default url
 $action     = $action ?? url("/yatzy");
@@ -34,6 +34,7 @@ $five       = $session["five"] ?? null; // Yatzy
 $summa        = $session["summa"] ?? 0;
 $bonus        = $session["bonus"] ?? 0;
 $specialSumma = $session["specialSumma"] ?? null;
+// dd($action);
 
 ?>
 

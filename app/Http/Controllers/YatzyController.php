@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 class YatzyController extends Controller
 {
-    public string $action;
+    // public string $action;
     
     /**
      * Index function
@@ -25,7 +25,7 @@ class YatzyController extends Controller
     {
         if (session('end')) {
             $action = url("/highscore/store");
-        } elseif (session('roll')) {
+        } elseif (session('rolling')) {
             $action = url("/yatzy/roll");
         } elseif (session('firstView')) {
             $action = url("/yatzy/firstRoll");
@@ -63,9 +63,9 @@ class YatzyController extends Controller
         session(["stairHigh" => null]);
         session(["house" => null]);
         session(["chans" => null]);
-        session(["specialSumma" => null]);
+        session(["specialSumma" => 0]);
         session(["summa" => 0]);
-        session(["bonus" => null]);
+        session(["bonus" => 0]);
 
         return redirect('/yatzy');
     }
@@ -75,6 +75,9 @@ class YatzyController extends Controller
      */
     public function firstRoll()
     {
+        // Check if Yatzy is in session, make new Yatzy
+        session(['yatzy' => session('yatzy') ?? new Yatzy()]);
+
         session('yatzy')->firstRoll();
 
         return redirect('/yatzy');
@@ -87,9 +90,14 @@ class YatzyController extends Controller
      */
     public function roll()
     {
+        // Check if the needed is in session, otherwise make new
+        session(['diceHand' => session('diceHand') ?? new DiceHand()]);
+        session(['yatzy' => session('yatzy') ?? new Yatzy()]);
+
+        // Determin if something was posted or not
         session(["check" => $_POST["check"] ?? null]);
         session(["selection" => $_POST["selection"] ?? null]);
-        // dd(session('selection'));
+
         session('yatzy')->roll();
 
         return redirect('/yatzy');

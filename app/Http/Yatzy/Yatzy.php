@@ -21,7 +21,7 @@ class Yatzy {
         // Checking so Session has everything needed
         session(['diceHand' => session('diceHand') ?? new DiceHand()]);
         session(['summa' => session('summa') ?? 0]);
-        session(['roll' => true]);
+        session(['rolling' => true]);
         // $this->diceHand = new DiceHand();
         // Get 5 dices, roll and put into dh (dicehand) variable
         if (session('rollCounter') == 0) {
@@ -104,6 +104,7 @@ class Yatzy {
         session(['summa' => session('summa') ?? 0]);
         session(['specialSumma' => session('specialSumma') ?? 0]);
         session(['diceHand' => session('diceHand') ?? new DiceHand()]);
+        session(['yatzy' => session('yatzy') ?? new Yatzy()]);
         $selectArray = session('selection')[0] ?? null;
         $selection = explode(' ', $selectArray)[0] ?? null;
         // $sessionWord = explode(' ', $selectArray)[1] ?? null;

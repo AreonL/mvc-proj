@@ -37,30 +37,30 @@ class HighscoreController extends Controller
 
         $highscore = new Highscore();
         $highscore->name  = request('name');
-        $highscore->score = request('total');
+        $highscore->score = request('total') ?? 0;
         $highscore->save();
 
 
         $board = new Board();
-        $board->name        = request('name');
-        $board->select1     = request('select1');
-        $board->select2     = request('select2');
-        $board->select3     = request('select3');
-        $board->select4     = request('select4');
-        $board->select5     = request('select5');
-        $board->select6     = request('select6');
-        $board->pair        = request('pair');
-        $board->twopair     = request('twopair');
-        $board->three       = request('three');
-        $board->four        = request('four');
-        $board->five        = request('five');
-        $board->stairLow    = request('stairLow');
-        $board->stairHigh   = request('stairHigh');
-        $board->house       = request('house');
-        $board->chance      = request('chance');
-        $board->summa       = request('summa');
-        $board->bonus       = request('bonus');
-        $board->total       = request('total');
+        $board->name        = request('name') ?? 0;
+        $board->select1     = request('select1') ?? 0;
+        $board->select2     = request('select2') ?? 0;
+        $board->select3     = request('select3') ?? 0;
+        $board->select4     = request('select4') ?? 0;
+        $board->select5     = request('select5') ?? 0;
+        $board->select6     = request('select6') ?? 0;
+        $board->pair        = request('pair') ?? 0;
+        $board->twopair     = request('twopair') ?? 0;
+        $board->three       = request('three') ?? 0;
+        $board->four        = request('four') ?? 0;
+        $board->five        = request('five') ?? 0;
+        $board->stairLow    = request('stairLow') ?? 0;
+        $board->stairHigh   = request('stairHigh') ?? 0;
+        $board->house       = request('house') ?? 0;
+        $board->chance      = request('chance') ?? 0;
+        $board->summa       = request('summa') ?? 0;
+        $board->bonus       = request('bonus') ?? 0;
+        $board->total       = request('total') ?? 0;
         $board->save();
 
         session()->flush();

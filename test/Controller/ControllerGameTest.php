@@ -188,4 +188,19 @@ class ControllerGame21Test extends TestCase
         $res = session('cLose');
         $this->assertEquals($res, 'cLose');
     }
+
+    /**
+     * Check that the controller returns a response.
+     */
+    public function testFunctionRoll()
+    {
+        $controller = new GameController();
+        $this->assertInstanceOf("App\Http\Controllers\GameController", $controller);
+        $controller->setUp();
+
+        $controller->roll();
+
+        session(['end' => 'end']);
+        $controller->roll();
+    }
 }

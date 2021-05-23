@@ -51,6 +51,8 @@ class GameController extends Controller
         session(["reset" => $_POST['reset'] ?? null]);
         $content = $_POST["content"] ?? null;
         $dices = $_POST["dices"] ?? null;
+        $content = session('roll') ?? $content;
+        $content = session('end') ?? $content;
         if ($content == "roll" or $content == "end") :
             session(["output" => $content ?? null]);
         endif;
