@@ -91,6 +91,7 @@ class Yatzy {
         session(['diceHand' => session('diceHand') ?? new DiceHand()]);
         $selectArray = session('selection')[0] ?? null;
         $selection = explode(' ', $selectArray)[0] ?? null;
+        // $sessionWord = explode(' ', $selectArray)[1] ?? null;
         
         if (strlen($selection) == 1) {
             $sumNumber = session('diceHand')->getSumNumber((int)$selection) ?? 0;
@@ -103,7 +104,7 @@ class Yatzy {
             return;
         } elseif (strlen($selection) > 1) {
             $sumNumber = $this->specialSelection($selection);
-            // session([($selection) => $sumNumber]);
+            session([$selection => $sumNumber]);
             session(['rollCounter' => 0]);
             session(['check' => ["0", "1", "2", "3", "4"]]);
             session()->increment('specialSumma', $sumNumber);
@@ -126,10 +127,10 @@ class Yatzy {
                 $sum = $this->twopair($sumNumber);
                 break;
             case 'threeFourFive':
-                $sum = $this->threeFourFive($sumNumber);
+                $this->threeFourFive($sumNumber);
                 break;
             case 'stair':
-                $sum = $this->stair($sumNumber);
+                $this->stair($sumNumber);
                 break;
             case 'house':
                 $sum = $this->house($sumNumber);
@@ -174,7 +175,6 @@ class Yatzy {
     public function threeFourFive($sumNumber): int
     {
         $sum = 0;
-        // dd(session('selection'));
         $selection = session('selection')[0] ?? null;
         
         $sessionWord = explode(' ', $selection)[1] ?? null;
@@ -184,8 +184,8 @@ class Yatzy {
         foreach ($sumNumber as $key => $value) {
             if ($value >= $antal) {
                 // Yatzy
-                if ($value === $antal) {
-                    session([$sessionWord => 50]);
+                if ($antal == 5) {
+                    session(['five' => 50]);
                     return 50;
                 }
                 // Three and Four
@@ -196,12 +196,15 @@ class Yatzy {
                 return $sum;
             }
         }
-        session([$antal => 0]);
+        session([$sessionWord => 0]);
         return 0;
     }
 
     public function stair($sumNumber): int
     {
+        $selection = session('selection')[0] ?? null;
+        $sessionWord = explode(' ', $selection)[1] ?? null;
+
         sort($sumNumber);
         $stairLow = array(1, 2, 3, 4, 5);
         $stairHigh = array(2, 3, 4, 5, 6);
@@ -215,6 +218,7 @@ class Yatzy {
             session(['stairLow' => 20]);
             return 20;
         }
+        session([$sessionWord => 0]);
         return 0;
     }
 

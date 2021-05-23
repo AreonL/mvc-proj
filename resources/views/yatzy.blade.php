@@ -183,7 +183,7 @@ $specialSumma = $session["specialSumma"] ?? null;
             <p>
                 <label>Liten stege</label>
                 @if (is_null($stairLow))
-                <input type="radio" name="selection[]" value="stair">
+                <input type="radio" name="selection[]" value="stair stairLow">
                 @else
                     = {{ $stairLow }}
                 @endif
@@ -191,7 +191,7 @@ $specialSumma = $session["specialSumma"] ?? null;
             <p>
                 <label>Stor stege</label>
                 @if (is_null($stairHigh))
-                <input type="radio" name="selection[]" value="stair">
+                <input type="radio" name="selection[]" value="stair stairHigh">
                 @else
                     = {{ $stairHigh }}
                 @endif
