@@ -1,0 +1,50 @@
+PHPUnit 9.5.4 by Sebastian Bergmann and contributors.
+
+.................FEEEE                                            22 / 22 (100%)
+
+Time: 00:03.436, Memory: 40.00 MB
+
+There were 4 errors:
+
+1) App\Http\Controllers\ControllerYatzyTest::testCheckAllBoxes
+BadMethodCallException: Method App\Http\Controllers\YatzyController::checkAllBoxes does not exist.
+
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\vendor\laravel\framework\src\Illuminate\Routing\Controller.php:68
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\test\Controller\ControllerYatzyTest.php:104
+
+2) App\Http\Controllers\ControllerYatzyTest::testTrueRollInArray
+Error: Call to a member function roll() on null
+
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\app\Http\Controllers\YatzyController.php:93
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\test\Controller\ControllerYatzyTest.php:132
+
+3) App\Http\Controllers\ControllerYatzyTest::testBonus
+BadMethodCallException: Method App\Http\Controllers\YatzyController::bonus does not exist.
+
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\vendor\laravel\framework\src\Illuminate\Routing\Controller.php:68
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\test\Controller\ControllerYatzyTest.php:151
+
+4) App\Http\Controllers\ControllerYatzyTest::testSelection
+BadMethodCallException: Method App\Http\Controllers\YatzyController::selection does not exist.
+
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\vendor\laravel\framework\src\Illuminate\Routing\Controller.php:68
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\test\Controller\ControllerYatzyTest.php:205
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\test\Controller\ControllerYatzyTest.php:175
+
+--
+
+There was 1 failure:
+
+1) App\Http\Controllers\ControllerYatzyTest::testIndexRollResponse
+Expected status code 200 but received 500.
+Failed asserting that 200 is identical to 500.
+
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:187
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\test\Controller\ControllerYatzyTest.php:75
+
+ERRORS!
+Tests: 22, Assertions: 41, Errors: 4, Failures: 1.
+
+Generating code coverage report in Clover XML format ... done [00:00.137]
+
+Generating code coverage report in HTML format ... done [00:00.392]

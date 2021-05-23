@@ -9,9 +9,17 @@ use App\Http\Dice\{
 };
 
 /**
- * Class Yatzy
+ * Class Special
+ * 
+ * Cohesion to Yatzy
  */
 class Special {
+    /**
+     * Checks if selected are either
+     * Pair, Two pair or Threes Fours Yatzy
+     * 
+     * Returns int sum
+     */
     public function middleSelection($selection, $arrayNumber): int
     {
         $sum = 0;
@@ -30,6 +38,12 @@ class Special {
         return $sum;
     }
 
+    /**
+     * Checks if selected are either
+     * Stair Low, Stair High, House or Chance
+     * 
+     * Returns int sum
+     */
     public function specialSelection($selection, $arrayNumber): int
     {
         $sum = 0;

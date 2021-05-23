@@ -13,9 +13,8 @@ use App\Http\Yatzy\Special;
  * Class Yatzy
  */
 class Yatzy {
-
     /**
-     * 
+     * Returns a rolled hand of five dices
      */
     public function firstRoll()
     {
@@ -38,7 +37,14 @@ class Yatzy {
         session(["dh" => session("diceHand")->getHand()]);
         return;
     }
-
+    /**
+     * Checks if there has been a selection
+     * Checks if bonus is available
+     * Checks if the player want to keep dices
+     * 
+     * Rolls dices of non selected if any
+     * Adds one to rollCounter
+     */
     public function roll()
     {
         // Checking so Session has everything needed
@@ -51,8 +57,6 @@ class Yatzy {
         // Check if selected
         $this->selection();
 
-        // $this->specialSelection();
-
         // Check if bonus
         $this->bonus();
 
@@ -63,15 +67,18 @@ class Yatzy {
         }
         session(['dh' => session("diceHand")->getHand()]);
         session()->increment("sum", (int)session("diceHand")->getSum());
+
         // add player rolls
         session()->increment("rollCounter", 1);
-        // $data["summa"] = session("summa");
-        
         return;
     }
 
+    /**
+     * Returns an array of true or false for what dice to roll
+     */
     public function trueRoll(): array
     {
+        // Check what user wanna keep
         $trueRoll = [false, false, false, false, false];
         $check = session("check");
         if ($check) {
@@ -84,6 +91,13 @@ class Yatzy {
         return $trueRoll;
     }
 
+    /**
+     * Splits string into array, checks if it's the first 6 of options
+     * Passes to Special calls if more than 1 character in string with name
+     * 
+     * Adds sum to relativ option selected and to total
+     * Rerolls the whole dicehand
+     */
     public function selection(): void
     {
         // Add session if not exsists
@@ -124,174 +138,6 @@ class Yatzy {
         }
     }
 
-    // public function middleSelection($selection, $arrayNumber): int
-    // {
-    //     $sum = 0;
-
-    //     switch ($selection) {
-    //         case 'pair':
-    //             $sum = $this->pair($arrayNumber);
-    //             break;
-    //         case 'twopair':
-    //             $sum = $this->twopair($arrayNumber);
-    //             break;
-    //         case 'threeFourFive':
-    //             $this->threeFourFive($arrayNumber);
-    //             break;
-    //     }
-    //     return $sum;
-    // }
-
-    // public function specialSelection($selection, $arrayNumber): int
-    // {
-    //     $sum = 0;
-
-    //     switch ($selection) {
-    //         case 'stair':
-    //             $this->stair($arrayNumber);
-    //             break;
-    //         case 'house':
-    //             $sum = $this->house($arrayNumber);
-    //             break;
-    //         case 'chance':
-    //             $sum = $this->chans($arrayNumber);
-    //             break;
-    //     }
-    //     return $sum;
-    // }
-
-    // public function pair($sumNumber): int
-    // {
-    //     $biggest = 0;
-    //     foreach ($sumNumber as $key => $value) {
-    //         unset($sumNumber[$key]);
-    //         if (in_array($value, $sumNumber) && $value > $biggest) {
-    //             $biggest = $value;
-    //         }
-    //     }
-    //     return $biggest + $biggest;
-    // }
-
-    // public function twopair($sumNumber): int
-    // {
-    //     // $number[0] = One number, $number[1] = Second number
-    //     $number = array(0, 0);
-        
-    //     foreach ($sumNumber as $key => $value) {
-    //         unset($sumNumber[$key]);
-    //         $number = $this->twopairCheck($sumNumber, $value, $number);
-    //     }
-    //     if ($number[1] != 0) {
-    //         return ($number[0] + $number[0]) + ($number[1] + $number[1]);
-    //     }
-    //     return 0;
-    // }
-
-    // public function twopairCheck($sumNumber, $value, $number)
-    // {
-    //     if (in_array($value, $sumNumber) && $number[0] == 0) {
-    //         $number[0] = $value;
-    //     } elseif (in_array($value, $sumNumber) && $value != $number[0]) {
-    //         $number[1] = $value;
-    //     }
-    //     return $number;
-    // }
-
-    // public function threeFourFive($sumNumber): int
-    // {
-    //     $sum = 0;
-    //     $selection = session('selection')[0] ?? null;
-        
-    //     $sessionWord = explode(' ', $selection)[1] ?? null;
-    //     $antal = explode(' ', $selection)[2] ?? null;
-
-    //     $sumNumber = array_count_values($sumNumber);
-    //     foreach ($sumNumber as $key => $value) {
-    //         if ($value >= $antal) {
-    //             // Yatzy
-    //             if ($antal == 5) {
-    //                 session(['five' => 50]);
-    //                 session()->increment('specialSumma', 50);
-    //                 return 50;
-    //             }
-    //             // Three and Four
-    //             for ($i = 0; $i < $value; $i++) { 
-    //                 $sum += $key;
-    //             }
-    //             session([$sessionWord => $sum]);
-    //             session()->increment('specialSumma', $sum);
-    //             return $sum;
-    //         }
-    //     }
-    //     session([$sessionWord => 0]);
-    //     return 0;
-    // }
-
-    // public function stair($sumNumber): int
-    // {
-    //     $selection = session('selection')[0] ?? null;
-    //     $sessionWord = explode(' ', $selection)[1] ?? null;
-
-    //     sort($sumNumber);
-    //     $stairLow = array(1, 2, 3, 4, 5);
-    //     $stairHigh = array(2, 3, 4, 5, 6);
-    //     $resultHigh = array_intersect_assoc($sumNumber, $stairHigh);
-    //     $resultLow = array_intersect_assoc($sumNumber, $stairLow);
-
-    //     if (count($resultLow) == 5) {
-    //         session(['stairLow' => 15]);
-    //         session()->increment('specialSumma', 15);
-
-    //         return 15;
-    //     }
-    //     if (count($resultHigh) == 5) {
-    //         session(['stairLow' => 20]);
-    //         session()->increment('specialSumma', 20);
-
-    //         return 20;
-    //     }
-    //     session([$sessionWord => 0]);
-    //     return 0;
-    // }
-
-    // public function house($sumNumber): int
-    // {
-    //     $sum = 0;
-    //     $newArray = array_count_values($sumNumber);
-
-    //     $numberArray = $this->houseCheck($newArray);
-
-    //     if ($numberArray[0] === true && $numberArray[1] === true) {
-    //         foreach ($sumNumber as $key) {
-    //             $sum += $key;
-    //         }
-    //         return $sum;
-    //     }
-    //     return 0;
-    // }
-
-    // public function houseCheck($newArray): array
-    // {
-    //     $numberArray = array(false, false);
-    //     foreach ($newArray as $key => $value) {
-    //         if ($value == 3) {
-    //             $numberArray[0] = true;
-    //         } elseif ($value == 2) {
-    //             $numberArray[1] = true;
-    //         }
-    //     }
-    //     return $numberArray;
-    // }
-
-    // public function chans($sumNumber): int
-    // {
-    //     $sum = 0;
-    //     foreach ($sumNumber as $key) {
-    //         $sum += $key;
-    //     }
-    //     return $sum;
-    // }
-
     /**
      * Checks if summa is enough for bonus points
      * 
@@ -305,6 +151,10 @@ class Yatzy {
         }
     }
 
+    /**
+     * Check if all boxes are filled in
+     * Return bool
+     */
     public function checkAllBoxes(): bool
     {
         $select = array();

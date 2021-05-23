@@ -32,12 +32,14 @@ class YatzyController extends Controller
         }
 
         return view('yatzy', [
-            'action' => $action,
+            'action' => $action ?? null,
             'session' => session()->all(),
         ]);
     }
 
     /**
+     * Route from navbar 'Yatzy'
+     * 
      * Puts everything nessesary into session
      */
     public function setup()
