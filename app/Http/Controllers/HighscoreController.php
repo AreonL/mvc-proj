@@ -11,8 +11,6 @@ class HighscoreController extends Controller
     {
         $highscore = Highscore::all();
 
-        // dd($highscore);
-
         $arr = array();
 
         foreach ($highscore as $key) {
@@ -68,6 +66,9 @@ class HighscoreController extends Controller
         return redirect("/yatzy/setup");
     }
 
+    /**
+     * @param integer $id
+     */
     public function show($id)
     {
         $board = Board::find($id);
