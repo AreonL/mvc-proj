@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class SessionController extends Controller
 {
-    public function session(Request $request)
+    public function session()
     {
         return view('session', [
-            'session' => $request->session()->all(),
+            'session' => session()->all(),
         ]);
     }
 
-    public function destroy(Request $request)
+    public function destroy()
     {
-        $request->session()->flush();
+        session()->flush();
 
         return redirect("/session");
     }
