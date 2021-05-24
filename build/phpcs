@@ -1,0 +1,26 @@
+
+FILE: C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\database\migrations\2021_05_17_204222_create_highscores_table.php
+------------------------------------------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+------------------------------------------------------------------------------------------------------------------
+ 9 | ERROR | Each class must be in a namespace of at least one level (a top-level vendor name)
+------------------------------------------------------------------------------------------------------------------
+
+
+FILE: C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\database\migrations\2021_05_17_204228_create_books_table.php
+-------------------------------------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+-------------------------------------------------------------------------------------------------------------
+ 9 | ERROR | Each class must be in a namespace of at least one level (a top-level vendor name)
+-------------------------------------------------------------------------------------------------------------
+
+
+FILE: C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\database\migrations\2021_05_21_172218_create_boards_table.php
+--------------------------------------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+--------------------------------------------------------------------------------------------------------------
+ 7 | ERROR | Each class must be in a namespace of at least one level (a top-level vendor name)
+--------------------------------------------------------------------------------------------------------------
+
+Time: 1.89 secs; Memory: 8MB
+

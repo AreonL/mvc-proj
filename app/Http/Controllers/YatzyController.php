@@ -14,10 +14,10 @@ use Illuminate\Http\Request;
 class YatzyController extends Controller
 {
     // public string $action;
-    
+
     /**
      * Index function
-     * 
+     *
      * Check what action each view should have
      * Returns the view with action and session
      */
@@ -39,7 +39,7 @@ class YatzyController extends Controller
 
     /**
      * Route from navbar 'Yatzy'
-     * 
+     *
      * Puts everything nessesary into session
      */
     public function setup()
@@ -85,7 +85,7 @@ class YatzyController extends Controller
 
     /**
      * Put the posted values into session
-     * 
+     *
      * Calls function roll
      */
     public function roll()

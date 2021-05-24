@@ -32,18 +32,15 @@ class SpecialTest extends TestCase
      */
     public function testFunctionPair()
     {
-        $class = new Special();
-        $this->assertInstanceOf("App\Http\Yatzy\Special", $class);
-        
         $function = 'pair';
 
         $sumNumber = ["1", "2", "3", "4", "5"];
         $exp = 0;
-        $this->assertFunctionEquals($sumNumber, $function, $exp, $class);
+        $this->assertFunctionEquals($sumNumber, $function, $exp);
 
         $sumNumber = ["6", "6", "1", "2", "3"];
         $exp = 12;
-        $this->assertFunctionEquals($sumNumber, $function, $exp, $class);
+        $this->assertFunctionEquals($sumNumber, $function, $exp);
     }
 
     /**
@@ -51,18 +48,15 @@ class SpecialTest extends TestCase
      */
     public function testFunctionTwoPair()
     {
-        $class = new Special();
-        $this->assertInstanceOf("App\Http\Yatzy\Special", $class);
-        
         $function = 'twopair';
 
         $sumNumber = ["1", "2", "3", "4", "5"];
         $exp = 0;
-        $this->assertFunctionEquals($sumNumber, $function, $exp, $class);
+        $this->assertFunctionEquals($sumNumber, $function, $exp);
 
         $sumNumber = ["6", "6", "1", "5", "5"];
         $exp = 22;
-        $this->assertFunctionEquals($sumNumber, $function, $exp, $class);
+        $this->assertFunctionEquals($sumNumber, $function, $exp);
     }
 
     /**
@@ -86,9 +80,6 @@ class SpecialTest extends TestCase
 
     public function threeFourFiveHelper($wordNumber, $number, $sumNumber2, $exp2)
     {
-        $class = new Special();
-        $this->assertInstanceOf("App\Http\Yatzy\Special", $class);
-
         $function = 'threeFourFive';
         $selection = ['threeFourFive ' . $wordNumber . ' ' . $number];
 
@@ -96,8 +87,8 @@ class SpecialTest extends TestCase
 
         $sumNumber = ["1", "2", "3", "4", "5"];
         $exp = 0;
-        $this->assertFunctionEquals($sumNumber, $function, $exp, $class);
-        $this->assertFunctionEquals($sumNumber2, $function, $exp2, $class);
+        $this->assertFunctionEquals($sumNumber, $function, $exp);
+        $this->assertFunctionEquals($sumNumber2, $function, $exp2);
     }
 
     /**
@@ -117,8 +108,6 @@ class SpecialTest extends TestCase
 
     public function stairHelper($wordNumber, $sumNumber2, $exp2)
     {
-        $class = new Special();
-        $this->assertInstanceOf("App\Http\Yatzy\Special", $class);
 
         $function = 'stair';
         $selection = ['stair ' . $wordNumber];
@@ -127,8 +116,8 @@ class SpecialTest extends TestCase
 
         $sumNumber = ["1", "2", "3", "5", "6"];
         $exp = 0;
-        $this->assertFunctionEquals($sumNumber, $function, $exp, $class);
-        $this->assertFunctionEquals($sumNumber2, $function, $exp2, $class);
+        $this->assertFunctionEquals($sumNumber, $function, $exp);
+        $this->assertFunctionEquals($sumNumber2, $function, $exp2);
     }
 
     /**
@@ -136,18 +125,16 @@ class SpecialTest extends TestCase
      */
     public function testFunctionHouse()
     {
-        $class = new Special();
-        $this->assertInstanceOf("App\Http\Yatzy\Special", $class);
-        
+
         $function = 'House';
 
         $sumNumber = ["1", "2", "3", "4", "5"];
         $exp = 0;
-        $this->assertFunctionEquals($sumNumber, $function, $exp, $class);
+        $this->assertFunctionEquals($sumNumber, $function, $exp);
 
         $sumNumber = ["6", "6", "6", "5", "5"];
         $exp = 28;
-        $this->assertFunctionEquals($sumNumber, $function, $exp, $class);
+        $this->assertFunctionEquals($sumNumber, $function, $exp);
     }
 
     /**
@@ -155,25 +142,26 @@ class SpecialTest extends TestCase
      */
     public function testFunctionChans()
     {
-        $class = new Special();
-        $this->assertInstanceOf("App\Http\Yatzy\Special", $class);
-        
+
         $function = 'Chans';
 
         $sumNumber = ["1", "2", "3", "4", "5"];
         $exp = 15;
-        $this->assertFunctionEquals($sumNumber, $function, $exp, $class);
+        $this->assertFunctionEquals($sumNumber, $function, $exp);
 
         $sumNumber = ["6", "6", "6", "6", "6"];
         $exp = 30;
-        $this->assertFunctionEquals($sumNumber, $function, $exp, $class);
+        $this->assertFunctionEquals($sumNumber, $function, $exp);
     }
 
     /**
      * Used to assert all functions options
      */
-    public function assertFunctionEquals($sumNumber, $function, $exp, $class)
+    public function assertFunctionEquals($sumNumber, $function, $exp)
     {
+        $class = new Special();
+        $this->assertInstanceOf("App\Http\Yatzy\Special", $class);
+
         $res = $class->$function($sumNumber);
         $this->assertEquals($res, $exp);
     }

@@ -10,14 +10,15 @@ use App\Http\Dice\{
 
 /**
  * Class Special
- * 
+ *
  * Cohesion to Yatzy
  */
-class Special {
+class Special
+{
     /**
      * Checks if selected are either
      * Pair, Two pair or Threes Fours Yatzy
-     * 
+     *
      * Returns int sum
      */
     public function middleSelection($selection, $arrayNumber): int
@@ -41,7 +42,7 @@ class Special {
     /**
      * Checks if selected are either
      * Stair Low, Stair High, House or Chance
-     * 
+     *
      * Returns int sum
      */
     public function specialSelection($selection, $arrayNumber): int
@@ -78,7 +79,7 @@ class Special {
     {
         // $number[0] = One number, $number[1] = Second number
         $number = array(0, 0);
-        
+
         foreach ($sumNumber as $key => $value) {
             unset($sumNumber[$key]);
             $number = $this->twopairCheck($sumNumber, $value, $number);
@@ -103,7 +104,7 @@ class Special {
     {
         $sum = 0;
         $selection = session('selection')[0] ?? null;
-        
+
         // dd($selection);
         $sessionWord = explode(' ', $selection)[1] ?? null;
         $antal = explode(' ', $selection)[2] ?? null;
@@ -117,7 +118,7 @@ class Special {
                     return 50;
                 }
                 // Three and Four
-                for ($i = 0; $i < $value; $i++) { 
+                for ($i = 0; $i < $value; $i++) {
                     $sum += $key;
                     // echo $sum;
                 }

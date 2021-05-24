@@ -10,3 +10,6 @@ parameters:
         -
             message: '#Access to an undefined property [a-zA-Z0-9\\_]+::\$+[a-zA-Z0-9\\_]#'
             path: app/http/controllers/*
+        -
+            message: '#Call to an undefined static method [a-zA-Z0-9\\_]+::find()#'
+            path: app/http/controllers/HighscoreController.php

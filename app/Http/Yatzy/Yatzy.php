@@ -12,7 +12,8 @@ use App\Http\Yatzy\Special;
 /**
  * Class Yatzy
  */
-class Yatzy {
+class Yatzy
+{
     /**
      * Returns a rolled hand of five dices
      */
@@ -29,7 +30,7 @@ class Yatzy {
                 session("diceHand")->addDice(new DiceGraphic());
             }
             session("diceHand")->roll();
-            
+
             // Save roll counter to session
             session(["rollCounter" => 1]);
         };
@@ -41,7 +42,7 @@ class Yatzy {
      * Checks if there has been a selection
      * Checks if bonus is available
      * Checks if the player want to keep dices
-     * 
+     *
      * Rolls dices of non selected if any
      * Adds one to rollCounter
      */
@@ -94,7 +95,7 @@ class Yatzy {
     /**
      * Splits string into array, checks if it's the first 6 of options
      * Passes to Special calls if more than 1 character in string with name
-     * 
+     *
      * Adds sum to relativ option selected and to total
      * Rerolls the whole dicehand
      */
@@ -108,7 +109,7 @@ class Yatzy {
         $selectArray = session('selection')[0] ?? null;
         $selection = explode(' ', $selectArray)[0] ?? null;
         // $sessionWord = explode(' ', $selectArray)[1] ?? null;
-        
+
         if (strlen($selection) == 1) {
             $sumNumber = session('diceHand')->getSumNumber((int)$selection) ?? 0;
             session([('select' . $selection) => $sumNumber]);
@@ -141,7 +142,7 @@ class Yatzy {
 
     /**
      * Checks if summa is enough for bonus points
-     * 
+     *
      * return 50+ points if true
      */
     public function bonus(): void
@@ -188,5 +189,4 @@ class Yatzy {
         }
         return false;
     }
-
 }

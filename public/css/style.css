@@ -63,13 +63,13 @@ footer {
       "dice select"
       "dice select";
   }
-  
+
 .dice-grid { grid-area: dice; }
-  
+
 .select {
     grid-area: select;
 }
-  
+
 .board {
     background-color: white;
     color: black;

@@ -56,7 +56,7 @@ class ControllerYatzyTest extends TestCase
         $this->actionReturns('end', url("/highscore/store"), $controller);
     }
 
-    public function actionReturns($sessionVar, $output ,$controller)
+    public function actionReturns($sessionVar, $output, $controller)
     {
         session([$sessionVar => true]);
         $controller->setup();
@@ -82,7 +82,7 @@ class ControllerYatzyTest extends TestCase
 
         $session = session()->all();
         $this->assertNotEmpty($session);
-        
+
         $this->assertArrayHasKey('select1', $session);
         $this->assertArrayHasKey('select2', $session);
         $this->assertArrayHasKey('select3', $session);

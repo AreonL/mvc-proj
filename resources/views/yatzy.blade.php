@@ -1,4 +1,5 @@
 <?php
+
 // Title and message for firstView
 $header = "Yatzy";
 $message = "A game of Yatzy";

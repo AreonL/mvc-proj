@@ -51,13 +51,15 @@ class ControllerBookTest extends TestCase
         $controller = new BookController();
         $this->assertInstanceOf("App\Http\Controllers\BookController", $controller);
 
-        $this->post('/book/store',
-        [
+        $this->post(
+            '/book/store',
+            [
             'title' => 'Test',
             'ISBN' => 'Test',
             'author' => 'Test',
             'picture' => 'Test'
-        ]);
+            ]
+        );
 
         $controller->store();
     }

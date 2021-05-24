@@ -38,7 +38,7 @@ class YatzyTest extends TestCase
         $this->assertEmpty(session()->all());
 
         $class->firstRoll();
-        
+
         $this->assertNotEmpty(session('dh'));
         $this->assertNotEmpty(session('diceHand'));
         $this->assertEquals(session('rollCounter'), 1);
@@ -56,7 +56,7 @@ class YatzyTest extends TestCase
         $this->assertEmpty(session()->all());
 
         $class->roll();
-        
+
         $this->assertNotEmpty(session('diceHand'));
         $this->assertEquals(session('summa'), 0);
         $this->assertEquals(session('rollCounter'), 2);
@@ -79,16 +79,16 @@ class YatzyTest extends TestCase
         $this->assertEmpty(session()->all());
 
         $class->trueRoll();
-        
+
         $check = ["0", "1", "2", "3", "4"];
         $exp = [true, true, true, true, true];
         $this->trueRollFunction($check, $exp, $class);
-        
+
         $check = ["1", "3", "4"];
         //              1            3      4
         $exp = [false, true, false, true, true];
         $this->trueRollFunction($check, $exp, $class);
-        
+
         $check = ["2"];
         $exp = [false, false, true, false, false];
         $this->trueRollFunction($check, $exp, $class);

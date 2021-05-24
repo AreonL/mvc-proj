@@ -1,0 +1,6 @@
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\app\Http\Controllers\BookController.php:11	Avoid using static access to class '\App\Models\Book' in method 'index'.
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\app\Http\Controllers\HighscoreController.php:12	Avoid using static access to class '\App\Models\Highscore' in method 'index'.
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\app\Http\Controllers\HighscoreController.php:72	Avoid variables with short names like $id. Configured minimum length is 3.
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\app\Http\Controllers\HighscoreController.php:74	Avoid using static access to class '\App\Models\Board' in method 'show'.
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\app\Http\Yatzy\Special.php:121	Avoid variables with short names like $i. Configured minimum length is 3.
+C:\Users\Anxiety\dbwebb-kurser\mvc\me\proj\app\Http\Yatzy\Special.php:180	Avoid unused local variables such as '$key'.

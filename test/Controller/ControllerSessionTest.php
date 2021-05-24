@@ -53,7 +53,7 @@ class ControllerSessionTest extends TestCase
 
         $session = session()->all();
         $this->assertNotEmpty($session);
-        
+
         $controller->destroy();
 
         $session = session()->all();
