@@ -44,6 +44,8 @@ class YatzyController extends Controller
      */
     public function setup()
     {
+        session()->flush();
+
         session(['firstView' => true]);
         session(["sum" => 0]);
         session(["diceHand" => new DiceHand()]);

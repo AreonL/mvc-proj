@@ -118,7 +118,7 @@ class Special
                     return 50;
                 }
                 // Three and Four
-                for ($i = 0; $i < $value; $i++) {
+                for ($incre = 0; $incre < $antal; $incre++) {
                     $sum += $key;
                     // echo $sum;
                 }
@@ -177,7 +177,7 @@ class Special
     public function houseCheck($newArray): array
     {
         $numberArray = array(false, false);
-        foreach ($newArray as $key => $value) {
+        foreach ($newArray as $value) {
             if ($value == 3) {
                 $numberArray[0] = true;
             } elseif ($value == 2) {

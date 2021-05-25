@@ -67,11 +67,11 @@ class HighscoreController extends Controller
     }
 
     /**
-     * @param integer $id
+     * @param integer $identity
      */
-    public function show($id)
+    public function show($identity)
     {
-        $board = Board::find($id);
+        $board = Board::find($identity);
 
         return view('show', compact('board'));
     }

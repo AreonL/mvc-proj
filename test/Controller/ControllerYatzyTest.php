@@ -58,8 +58,8 @@ class ControllerYatzyTest extends TestCase
 
     public function actionReturns($sessionVar, $output, $controller)
     {
-        session([$sessionVar => true]);
         $controller->setup();
+        session([$sessionVar => true]);
         $response = $this->get('/yatzy');
 
         $response->assertStatus(200);
